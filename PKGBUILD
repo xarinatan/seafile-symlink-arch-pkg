@@ -25,7 +25,7 @@ sha256sums=('SKIP'
 provides=('seafile-client-cli')
 
 prepare () {
-  cd "$srcdir/seafile-master"
+  cd "$srcdir/seafile-symlink-master"
 
   patch -p1 -i "${srcdir}/libseafile.in.patch"
 
@@ -35,8 +35,8 @@ prepare () {
 }
 
 build() {
-  cd "$srcdir/seafile-master"
-
+  cd "$srcdir/seafile-symlink-master"
+  
   ./autogen.sh
 
   ./configure \
@@ -48,8 +48,8 @@ build() {
 }
 
 package() {
-  cd "$srcdir/seafile-master"
-
+  cd "$srcdir/seafile-symlink-master"
+  
   make DESTDIR="${pkgdir}" install
   install -Dm644 "${srcdir}"/seaf-cli@.service "${pkgdir}"/usr/lib/systemd/system/seaf-cli@.service
 }
