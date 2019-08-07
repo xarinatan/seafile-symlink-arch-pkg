@@ -27,10 +27,10 @@ provides=('seafile-client-cli')
 prepare () {
   cd "$srcdir/seafile-symlink-master"
 
-  #patch -p1 -i "${srcdir}/libseafile.in.patch"
+  patch -p1 -i "${srcdir}/libseafile.in.patch"
 
   # Fix all script's python 2 requirement
-  grep -s -l -r '#!/usr/bin/env python' "${srcdir}/seafile-${pkgver}" \
+  grep -s -l -r '#!/usr/bin/env python' "${srcdir}/seafile-master \
     | xargs sed -i -e 's|#!/usr/bin/env python|#!/usr/bin/env python2|g'
 }
 
