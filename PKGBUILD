@@ -30,7 +30,7 @@ prepare () {
   patch -p1 -i "${srcdir}/libseafile.in.patch"
 
   # Fix all script's python 2 requirement
-  grep -s -l -r '#!/usr/bin/env python' "${srcdir}/seafile-master" \
+  grep -s -l -r '#!/usr/bin/env python' "${srcdir}/seafile-symlink-master" \
     | xargs sed -i -e 's|#!/usr/bin/env python|#!/usr/bin/env python2|g'
 }
 
