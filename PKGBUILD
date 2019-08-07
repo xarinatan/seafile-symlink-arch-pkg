@@ -16,7 +16,7 @@ depends=("ccnet-server" "libsearpc" "libevent"
          "fuse" "python2" "sqlite")
 makedepends=("vala" "intltool")
 conflicts=("seafile-server")
-source=("seafile/"
+source=("seafile"
         "libseafile.in.patch"
         "seaf-cli@.service")
 sha256sums=('c79a186e3a512454cb65d863bd45ecc8ae2c66a0dd2010533f3fed7862fa92f8'
@@ -25,7 +25,7 @@ sha256sums=('c79a186e3a512454cb65d863bd45ecc8ae2c66a0dd2010533f3fed7862fa92f8'
 provides=('seafile-client-cli')
 
 prepare () {
-  cd "${srcdir}/seafile-${pkgver}"
+  cd "${srcdir}/seafile"
 
   patch -p1 -i "${srcdir}/libseafile.in.patch"
 
@@ -48,7 +48,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}/seafile-${pkgver}"
+  cd "${srcdir}/seafile"
 
   make DESTDIR="${pkgdir}" install
   install -Dm644 "${srcdir}"/seaf-cli@.service "${pkgdir}"/usr/lib/systemd/system/seaf-cli@.service
